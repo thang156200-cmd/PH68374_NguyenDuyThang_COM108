@@ -348,9 +348,6 @@ int main()
         case 10:
             laplai(xaydungchuongtrinhtinhtoanphanso);
             break;
-        case 0:
-            printf("Thoat");
-            break;
         default:
             printf("\n => Khong co trong MENU ");
             break;
