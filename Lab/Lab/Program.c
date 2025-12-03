@@ -1,11 +1,29 @@
-// CConsoleApplication.c : file nay chua 'main' function. 
+﻿// CConsoleApplication.c : file nay chua 'main' function. 
 // Chuong trinh phan mem Bat dau thuc thi & Ket thuc o day.
 
 #include <stdio.h>
+#include <math.h>
+
+void hoandoi(int*a,int*b) {
+	int doi;
+	doi = *a;
+	*a = *b;
+	*b = doi;
+}
+
+
 
 int main()
 {
-    printf("Hi there!\n");
+	int a, b;
+	printf("Nhap gia tri a: ");
+	scanf_s("%d", &a);
+	printf("Nhap gia tri b: ");
+	scanf_s("%d", &b);
+	hoandoi(&a, &b);
+	printf("Sau hoan doi, gia tri a: %d\n",a);
+	printf("Sau hoan doi, gia tri b: %d\n",b);
+
 }
 
 // Debug/Run chuong trinh: bam "F5" hoac "Debug > Start Debugging" tren menu
