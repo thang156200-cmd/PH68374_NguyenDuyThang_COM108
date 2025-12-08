@@ -3,6 +3,19 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+
+void laplai(void(*hamchucnang)())
+{
+    char tieptuc;
+
+    do {
+        hamchucnang();
+        printf("\nBan co muon tiep tuc chuc nang nay khong? (y/n): ");
+        scanf_s(" %c", &tieptuc);
+
+    } while (tieptuc == 'y' || tieptuc == 'Y');
+}
 
 void chucnang2chieu()
 {
@@ -35,7 +48,6 @@ void demoSetring()
     {
         printf("%s", getchar());
     }
-
     printf("nhap ten cua ban: ");
     fgets(name, sizeof(name), stdin);
     // xuat du lieu = for + printf
@@ -45,30 +57,65 @@ void demoSetring()
     }
     printf("\n");
     //puts(name);
+    printf("String Length: ");
+    printf("%d", strlen(name)-1);
+    printf("\n");
+    printf("String Compare The Same As: ");
+    printf("%d", strcmp("aBc", "aBc"));
+    printf("\n");
+    printf("String Compare Less than: ");
+    printf("%d", strcmp("A", "c"));
+    printf("\n");
+    printf("String Compare Greater than: ");
+    printf("%d", strcmp("C", "A"));
+    printf("\n");
+    printf("String Reverse (Encrypyion): ");
+    printf("%s", strrev(name));
+    printf("\n");
+    printf("String Reverse (Decryption): ");
+    printf("%s", strrev(name));
+    printf("String Lower: ");
+    printf("%s", strlwr(name));
+    printf("\n");
+    printf("String Upper: ");
+    printf("%s", strupr(name));
+    printf("\n");
+    printf("Find String in String: ");
+    if (strstr(name, "A") != NULL)
+    {
+        printf("found: ");
+        printf("%s", strstr(name, "A"));
+    }
+    else
+    {
+        printf("NOT FOUND");
+    }
 }
-
 int main()
-{
+{     
     int chon;
-        printf(">>>> Menu <<<<<");
-        printf("0.Thoat");
+    do
+    {
+        printf("\n>>>> Menu <<<<<\n");
+        printf("\n0.Thoat");
         printf("\n1.Chuc nang 2 chieu");
         printf("\n2.demoString\n");
-
+        printf("Vui long chon chuc nang: ");
         scanf_s("%d", &chon);
         switch (chon)
         {
         case 1:
-            chucnang2chieu();
+            laplai(chucnang2chieu);
             break;
         case 2:
-            demoSetring();
+            laplai(demoSetring);
             break;
         default:
             printf("Khong co trong Menu");
             break;
         }
-}
+    } while (chon != 0);
+}    
 
 
 // Debug/Run chuong trinh: bam "F5" hoac "Debug > Start Debugging" tren menu

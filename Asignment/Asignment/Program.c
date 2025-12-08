@@ -1,9 +1,8 @@
-﻿// CConsoleApplication.c : file nay chua 'main' function. 
-// Chuong trinh phan mem Bat dau thuc thi & Ket thuc o day.
-
+﻿
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 void laplai(void(*hamchucnang)())
 {
@@ -38,8 +37,6 @@ void kiemtrasonguyen()
     //kiem tra co phai so nguyen khong
     if (scanf_s("%d", &x) != 1) {
         printf("Gia tri nhap vao khong phai la so nguyen.\n");
-        while (getchar() != "\n"); //xoa ky tu thua
-        return;
     }
     printf("Gia tri nhap vao la so nguyen: %d \n", x);
     //kiem tra so nguyen to
@@ -92,33 +89,24 @@ void timuocchungvaboichung()
 void tinhtienquankaraoke()
 {
     printf("\n => Chuong trinh tinh tien cho quan karaoke\n");
-#include <stdio.h>
-
-    
         int gioBatDau, gioKetThuc;
         float tien, soGio, tienGioDau = 150000;
-
         printf("Nhap gio bat dau (12-23): ");
         scanf_s("%d", &gioBatDau);
-
         printf("Nhap gio ket thuc (12-23): ");
         scanf_s("%d", &gioKetThuc);
-
         // Kiểm tra giờ hợp lệ
         if (gioBatDau < 12 || gioBatDau > 23 || gioKetThuc < 12 || gioKetThuc > 23) {
             printf("Gio bat dau va ket thuc phai trong khoang 12 den 23.\n");
             return 0;
         }
-
         // Kiểm tra giờ kết thúc sau giờ bắt đầu
         if (gioKetThuc <= gioBatDau) {
             printf("Gio ket thuc phai sau gio bat dau.\n");
             return 0;
         }
-
         // Tính số giờ
         soGio = gioKetThuc - gioBatDau;
-
         // Tính tiền
         if (soGio <= 3) {
             tien = soGio * tienGioDau;
@@ -127,14 +115,11 @@ void tinhtienquankaraoke()
             tien = 3 * tienGioDau; // 3 giờ đầu
             tien += (soGio - 3) * tienGioDau * 0.7; // từ giờ thứ 4 giảm 30%
         }
-
         // Giảm thêm 10% nếu giờ bắt đầu từ 14 đến 17
         if (gioBatDau >= 14 && gioBatDau <= 17) {
             tien *= 0.9;
         }
-
         printf("So tien can thanh toan: %.0f VND\n", tien);
-
         return 0;
 }
 void tinhtiendien()
@@ -289,18 +274,80 @@ void xapxepthontinsinhvien()
 void xaydunggame()
 {
     printf("\n =>  Xay dung game FPOLY-LOTT (2/15)\n");
+    int i, so1, so2, count = 0;
+    int kq, ketqua[2];
+    printf("Nhap so 1: ");
+    scanf_s("%d", &so1);
+    printf("Nhap so 2: ");
+    scanf_s("%d", &so2);
+    srand(time(0));
+    for (i = 0; i < 2; i++) {
+        kq = 1 + rand() % 15;
+        ketqua[i] = kq;
+    }
+    for (i = 0; i < 2; i++) {
+        if (so1 == ketqua[i]) {
+            count++;
+        }
+        if (so2 == ketqua[i]) {
+            count++;
+        }
+    }
+    printf("\nKet qua so xo hom nay la!");
+    printf("\nSo 1 = %d", ketqua[0]);
+    printf("\nSo 2 = %d", ketqua[1]);
+    if (count == 2) {
+        printf("\nChuc mung ban da trung giai dac biet!");
+        printf("\nGia tri giai thuong: 65 ti VND");
+    }
+    else if (count == 1) {
+        printf("\nChuc mung ban da trung giai nhat!");
+        printf("\nGia tri giai thuong: 500 trieu VND");
+    }
+    else {
+        printf("\nCHUC BAN MAY MAN LAN SAU!");
+    }
 }
+
+
 void xaydungchuongtrinhtinhtoanphanso()
 {
     printf(" \n=> Xay dung chuong trinh tinh toan phan so\n");
+    int a, b, c, d, i, rg;
+    int x1, x2, x3, x4, y1, y2, y3, y4;
+    printf("Nhap phan so thu 1: ");
+    scanf_s("%d%d", &a, &b);
+    printf("Nhap phan so thu 2: ");
+    scanf_s("%d%d", &c, &d);
+    x1 = (a * d) + (b * c);
+    y1 = b * d;
+    x2 = (a * d) - (b * c);
+    y2 = b * d;
+    x3 = a * c;
+    y3 = b * d;
+    x4 = a * d;
+    y4 = b * c;
+    for (i = 1; i <= x1 && i <= y1; i++) {
+        if (x1 % i == 0 && y1 % i == 0) {
+            rg = i;
+        }
+    }
+    printf("\nTong 2 phan so la: %d/%d ", x1, y1);
+    printf("\nHieu 2 phan so la: %d/%d ", x2, y2);
+    printf("\nTich 2 phan so la: %d/%d ", x3, y3);
+    printf("\nThuong 2 phan so la: %d/%d ", x4, y4);
+    printf("\n\nRut gon phan so:");
+    printf("\nTong la: %d/%d ", x1 / rg, y1 / rg);
+    printf("\nHieu la: %d/%d ", x2 / rg, y2 / rg);
+    printf("\nTich la: %d/%d ", x3 / rg, y3 / rg);
+    printf("\nThuong la: %d/%d ", x4 / rg, y4 / rg);
+
 }
 
 int main()
 {
     int chon;
-    do
-    {
-
+    do{
         printf("\n>>>>>> MENU <<<<<<\n");
         printf("\n1. kiem tra so nguyen ");
         printf("\n2. Tim uoc chung va boi chung cua 2 so ");
@@ -314,7 +361,6 @@ int main()
         printf("\n10. Xay dung chuong trinh tinh toan phan so ");
         printf("\n0. Thoat");
         printf("\nMoi chon chuc nang: ");
-
         scanf_s("%d", &chon);
         switch (chon)
         {
@@ -355,18 +401,3 @@ int main()
 
     } while (chon != 0);
 }
-
-// Debug/Run chuong trinh: bam "F5" hoac "Debug > Start Debugging" tren menu
-
-// Danh cho nguoi moi bat dau:
-//   1. Dung "Solution Explorer window" de them/quan ly cac files
-//   2. Dung "Output window" de kiem tra "build output" va "cac thong bao khac"
-//   3. Dung "Error List window" de xem loi
-//   4. Chon "Project > Add New Item" de tao moi file code,
-//      hoac "Project > Add Existing Item" de them file da ton tai vao project nay.
-//   5. Sau nay, de mo lai project nay,
-//      chon "File > Open > Project" va chon file *.sln
-//      Co the xem thu muc project, noi luu file *.sln bang cach
-//      bam phim chuot phai vao "Solution" > chon "Open Folder in File Explorer"
-
-// GV: AnhTT184
