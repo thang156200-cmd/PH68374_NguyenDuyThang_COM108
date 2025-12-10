@@ -1,0 +1,90 @@
+// CConsoleApplication.c : file nay chua 'main' function. 
+// Chuong trinh phan mem Bat dau thuc thi & Ket thuc o day.
+
+#include <stdio.h>
+#include <math.h>
+
+void thongtinmonhoc()
+{
+	char ten[50];
+	int maMon, tinChi;
+	const int hocPhiMotTin = 500000;
+	while (getchar() != '\n')
+	{
+		printf("%s", getchar());
+	}
+	printf("Vui long nhap ten mon hoc: ");
+	fgets(ten, sizeof(ten), stdin);
+	printf("Vui long nhap ma mon: ");
+	scanf_s("%d", &maMon);
+	printf("Vui long nhap tin chi: ");
+	scanf_s("%d", &tinChi);
+	int hocPhi = tinChi * hocPhiMotTin;
+	printf("Ten mon hoc: %s", ten);
+	printf("\nMa mon hoc: %d", maMon);
+	printf("\nSo tin chi: %d", tinChi);
+	printf("\nHoc phi: %d VND\n", hocPhi);
+}
+void tinhtongsole()
+{
+	int n, sum = 0, count = 0;
+	printf("\nVui long nhap n (n>0): ");
+	scanf_s("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		sum += i;
+	}
+	printf("Tong cac so tu 1 den %d la:%d\n", n, sum);
+	if (n % 2 == 0) {
+		printf("%d la so chan.\n", n);
+	}
+	else {
+		printf("%d la so le.\n", n);
+	}
+}
+void thongtindiemlab()
+{
+
+}
+
+int main()
+{
+	int chon;
+	do
+	{
+		printf("\n>>>>MENU<<<<");
+		printf("\n0. Thoat");
+		printf("\n1. Thong tin mon hoc");
+		printf("\n2. Tinh tong so le");
+		printf("\n3. Thong tin diem lab");
+		printf("\nVui long nhap chuc nang: ");
+		scanf_s("%d", &chon);
+		switch (chon)
+		{
+		case 1:
+			thongtinmonhoc();
+			break;
+		case 2:
+			tinhtongsole();
+			break;
+		case 3:
+			thongtindiemlab();
+			break;
+		}
+	} while (chon != 0);
+}
+
+// Debug/Run chuong trinh: bam "F5" hoac "Debug > Start Debugging" tren menu
+
+// Danh cho nguoi moi bat dau:
+//   1. Dung "Solution Explorer window" de them/quan ly cac files
+//   2. Dung "Output window" de kiem tra "build output" va "cac thong bao khac"
+//   3. Dung "Error List window" de xem loi
+//   4. Chon "Project > Add New Item" de tao moi file code,
+//      hoac "Project > Add Existing Item" de them file da ton tai vao project nay.
+//   5. Sau nay, de mo lai project nay,
+//      chon "File > Open > Project" va chon file *.sln
+//      Co the xem thu muc project, noi luu file *.sln bang cach
+//      bam phim chuot phai vao "Solution" > chon "Open Folder in File Explorer"
+
+// GV: AnhTT184
